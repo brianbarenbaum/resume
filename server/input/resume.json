@@ -1,0 +1,120 @@
+{
+    "name": "Brian Barenbaum",
+    "contact": {
+      "location": "Philadelphia, PA",
+      "phone": "240.460.4817",
+      "email": "brianbarenbaum@gmail.com",
+      "linkedin": "in/brian-barenbaum-4699923"
+    },
+    "summary": "Lead IT Specialist with 23 years of experience in full stack development, testing, operations, and maintenance. Expert in designing scalable, secure applications using TypeScript, Vue, Apollo GraphQL, .NET, and GitLab CI/CD. Proven track record in leading teams, driving digital transformation, and streamlining development operations.",
+    "experience": [
+      {
+        "job_title": "Lead IT Specialist",
+        "company": "U.S. Census Bureau",
+        "location": "Suitland, MD",
+        "duration": "August 2017 - Present",
+        "responsibilities": [
+          "Led agile teams of full stack developers serving a 700-person directorate by developing and supporting web applications using TypeScript, Vue, Apollo GraphQL, Tailwind CSS, .NET, C#, Entity Framework, and Hot Chocolate GraphQL.",
+          "Championed GitLab adoption, securing leadership buy-in and establishing a standardized platform for collaboration, configuration management, and CI/CD.",
+          "Developed, managed, and optimized GitLab CI/CD pipelines to automate testing, security scanning, and deployments using YAML.",
+          "Defined and enforced best practices for coding, security, performance optimization, and automation.",
+          "Designed and implemented automated testing strategies using Jest, Vitest, Playwright, and xUnit.",
+          "Containerized applications using Docker and Podman to improve portability, scalability, and security."
+        ]
+      },
+      {
+        "job_title": "Supervisory IT Specialist",
+        "company": "U.S. Census Bureau",
+        "location": "Suitland, MD",
+        "duration": "June 2009 – August 2017",
+        "responsibilities": [
+          "Managed and mentored 13 full-time staff and contractors, overseeing web development, database administration, and support.",
+          "Led IT modernization efforts by transitioning from legacy multi-page applications to modern SPAs using AngularJS, Webpack, and RESTful APIs.",
+          "Directed hiring, resource planning, and performance management to build high-performing, collaborative, and agile teams.",
+          "Advised senior leadership on IT strategy to align technology solutions with organizational goals, enhancing security, scalability, and cost efficiency.",
+          "Secured funding to expand the development team by demonstrating the value of automation and digital transformation."
+        ]
+      },
+      {
+        "job_title": "IT Specialist",
+        "company": "U.S. Census Bureau",
+        "location": "Suitland, MD",
+        "duration": "August 2002 – June 2009",
+        "responsibilities": [
+          "Identified data review and process inefficiencies, leading to the development of the department’s first web-based application.",
+          "Executed the full software development lifecycle—from choosing the technology stack to requirements gathering, design, development, testing, deployment, and maintenance using Oracle PL/SQL, Application Express, and JavaScript.",
+          "Configured and administered Oracle databases and Oracle WebLogic to support web applications, ensuring high availability, security, and performance.",
+          "Served as IT Project Manager & Lead Developer for the 2010 Census Count Review Project, an interactive GIS-based application used by state governments to review and validate addresses."
+        ]
+      }
+    ],
+    "education": [
+      {
+        "degree": "Master's Certificate in Information Technology Project Management",
+        "institution": "George Washington University",
+        "year": 2006
+      },
+      {
+        "degree": "Bachelor of Science in Information Technology",
+        "institution": "University of Maryland, College Park",
+        "year": 2002
+      }
+    ],
+    "awards": [
+      "Census Bureau Bronze Medal Awards - Five-time recipient for superior federal service",
+      "Census Bureau Director’s Award for Innovation - Honorable Mention"
+    ],
+    "skills": {
+      "front_end": [
+        "TypeScript",
+        "JavaScript",
+        "Vue",
+        "HTML",
+        "CSS",
+        "React",
+        "Tailwind",
+        "Bootstrap",
+        "Vite",
+        "Apollo GraphQL",
+        "AG-Grid", 
+        "AngularJS", 
+        "Webpack",
+        "RESTful APIs"
+      ],
+      "back_end": [
+        ".NET",
+        "C#",
+        "Entity Framework",
+        "Hot Chocolate GraphQL",
+        "Odata",
+        "Node.js"
+      ],
+      "testing": [
+        "Jest",
+        "Vitest",
+        "Cypress",
+        "Playwright",
+        "xUnit"
+      ],
+      "databases": [
+        "MS SQL Server (T-SQL)",
+        "Oracle (PL/SQL)"
+      ],
+      "devsecops": [
+        "GitLab CI/CD",
+        "YAML",
+        "Linux scripting",
+        "Docker",
+        "Podman",
+        "Contrast Security",
+        "Okta"
+      ],
+      "tools": [
+        "Visual Studio Code",
+        "Visual Studio Professional",
+        "Git",
+        "GitLab"
+      ]
+    }
+  }
+  
