@@ -10,7 +10,7 @@ const props = defineProps<{
   message: Message
 }>()
 
-// Pre-compute rendered markdown for better performance
+// Pre-compute rendered markdown
 const renderedMarkdown = computed(() => {
   return props.message.type === 'bot' ? renderMarkdown(props.message.text) : ''
 })

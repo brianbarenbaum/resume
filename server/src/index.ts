@@ -118,7 +118,7 @@ async function askGemini(context: string, question: string) {
          - Keep jobs in chronological order
          - Be specific about which technologies were used at which jobs
       10. The experience section lists where Brian worked
-      11. For all answers, use markdown formatting and ALWAYS use bullet points.
+      11. For all answers, use markdown formatting, always use bullet points and never output any text using snake case.  
     
   
       Please provide your response in a clear, direct manner.

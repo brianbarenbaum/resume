@@ -24,8 +24,8 @@ const messagesContainer = ref<HTMLElement | null>(null)
 
 // Initialize markdown renderer
 marked.setOptions({
-  breaks: true,
   gfm: true,
+  breaks: true,
 })
 
 // Helper functions
@@ -36,8 +36,25 @@ function formatTime(): string {
 export function useChatStore() {
   // Render markdown safely
   function renderMarkdown(text: string): string {
-    const rawHtml = marked(text)
+    const titleCaseText = snakeToTitleCase(text)
+    const capitalizedText = capitalizeFirstOnly(titleCaseText)
+    const rawHtml = marked(capitalizedText)
     return DOMPurify.sanitize(rawHtml as string)
+  }
+
+  function snakeToTitleCase(input: string): string {
+    return input.replace(/\b[A-Za-z]+(?:_[A-Za-z]+)+\b/g, (match) => {
+      return match
+        .split('_')
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+        .join(' ')
+    })
+  }
+
+  function capitalizeFirstOnly(input: string): string {
+    return input.replace(/\b[A-Z]+\b/g, (match) => {
+      return match.charAt(0).toUpperCase() + match.slice(1).toLowerCase()
+    })
   }
 
   // Scroll to bottom of messages
