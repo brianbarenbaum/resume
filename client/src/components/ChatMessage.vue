@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useChatService, type Message } from '../composables/chatService'
+import { useChatStore, type Message } from '../composables/chatStore'
 
 // Get renderMarkdown function from the chat service
-const { renderMarkdown } = useChatService()
+const { renderMarkdown } = useChatStore()
 
 // Define props
 const props = defineProps<{
@@ -23,13 +23,18 @@ const renderedMarkdown = computed(() => {
       message.type === 'user' ? 'self-end flex-row-reverse' : '',
     ]"
   >
-    <div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-2xl">
+    <div
+      class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-2xl"
+    >
       {{ message.type === 'user' ? '👤' : '🤖' }}
     </div>
+
     <div
       :class="[
         'px-4 py-3 rounded-2xl relative',
-        message.type === 'user' ? 'bg-primary text-white' : 'bg-gray-100',
+        message.type === 'user'
+          ? 'bg-primary text-white'
+          : 'bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200',
       ]"
     >
       <!-- Use v-html for bot messages to render markdown -->
@@ -40,8 +45,10 @@ const renderedMarkdown = computed(() => {
       ></div>
 
       <!-- Use regular text for user messages -->
-      <div v-else class="break-words">{{ message.text }}</div>
-      <div class="text-xs opacity-70 mt-1 text-right">{{ message.time }}</div>
+      <div v-else class="break-words text-gray-800 dark:text-gray-200">{{ message.text }}</div>
+      <div class="text-xs opacity-70 mt-1 text-right text-gray-800 dark:text-gray-200">
+        {{ message.time }}
+      </div>
     </div>
   </div>
 </template>

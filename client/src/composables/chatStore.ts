@@ -12,7 +12,7 @@ export interface Message {
 // Create singleton state outside the function
 const messages: Ref<Message[]> = ref([
   {
-    text: 'Hello! I can answer questions about this resume. Try asking something like "What skills do you have?" or "What awards did you win?"',
+    text: "Hello, I'm Brian's resume bot! I can answer questions about Brian's resume.",
     type: 'bot',
     time: formatTime(),
   },
@@ -33,7 +33,7 @@ function formatTime(): string {
   return new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
 }
 
-export function useChatService() {
+export function useChatStore() {
   // Render markdown safely
   function renderMarkdown(text: string): string {
     const rawHtml = marked(text)

@@ -2,10 +2,10 @@
 import { onMounted, watch } from 'vue'
 import ChatMessage from './ChatMessage.vue'
 import ChatLoadingIndicator from './ChatLoadingIndicator.vue'
-import { useChatService } from '../composables/chatService'
+import { useChatStore } from '../composables/chatStore'
 
 // Get state and methods from the chat service
-const { messages, loading, messagesContainer, scrollToBottom } = useChatService()
+const { messages, loading, messagesContainer, scrollToBottom } = useChatStore()
 
 // Set the messages container ref when the component is mounted
 const containerRef = messagesContainer
@@ -26,9 +26,12 @@ onMounted(() => {
 </script>
 
 <template>
-  <div ref="containerRef" class="flex-1 overflow-y-auto p-5 flex flex-col gap-4">
+  <div
+    ref="containerRef"
+    class="flex-1 overflow-y-auto p-5 flex flex-col gap-4"
+    style="min-height: 0"
+  >
     <ChatMessage v-for="(message, index) in messages" :key="index" :message="message" />
-
     <ChatLoadingIndicator v-if="loading" />
   </div>
 </template>

@@ -110,13 +110,15 @@ async function askGemini(context: string, question: string) {
       4. If not found, identify which specific piece of information is missing
       5. The words "manager" and "supervisor" can be used interchangeably when looking for an answer.
       6. When providing the answer, anywhere that you would write "The resume subject", write "Brian" instead.
-      7. If asked about awards, mention both awards that the subject of the resume won.
-      8. For questions about work experience, or jobs:
+      7. When the subject of the question is "you", that means the question is about Brian and his resume.
+      8. If asked about awards, mention both awards that the subject of the resume won.
+      9. For questions about work experience, or jobs:
          - List ALL roles in chronological order
          - Include ALL technologies mentioned for each role
          - Keep jobs in chronological order
          - Be specific about which technologies were used at which jobs
-      9. The experience section lists where Brian worked
+      10. The experience section lists where Brian worked
+      11. For all answers, use markdown formatting and ALWAYS use bullet points.
     
   
       Please provide your response in a clear, direct manner.

@@ -1,8 +1,23 @@
 @import "tailwindcss";
+@import "./markdown.css";
+@custom-variant dark (&:where(.dark, .dark *));
+
+html, body, #app {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Add smooth transition for theme changes */
+*, *::before, *::after {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-duration: 200ms;
+  transition-timing-function: ease-out;
+}
 
 @layer components {
   .typing-indicator span {
-    @apply w-2 h-2 bg-gray-500 rounded-full;
+    @apply w-2 h-2 bg-gray-500 dark:bg-gray-400 rounded-full;
     animation: bounce 1.4s infinite ease-in-out;
   }
   
@@ -25,5 +40,37 @@
   }
   50% {
     transform: translateY(-6px);
+  }
+}
+
+/* Fix for Firefox and other browsers with flex + scroll issues */
+.flex-col {
+  min-height: 0;
+}
+
+/* Dark mode scrollbar styles */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  .dark & {
+    background: #2d3748;
+  }
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 3px;
+  .dark & {
+    background: #1f2227;
+  }
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #aaa;
+  .dark & {
+    background: #718096;
   }
 }
