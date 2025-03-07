@@ -1,6 +1,28 @@
 <script setup lang="ts">
 import { useChatStore } from '../composables/chatStore'
+import { computed, ref, onMounted } from 'vue'
 const { userInput, loading, sendMessage } = useChatStore()
+
+// Initialize windowWidth safely
+const windowWidth = ref(0)
+
+// Update window width on mount and resize
+onMounted(() => {
+  // Set initial width
+  windowWidth.value = window.innerWidth
+
+  // Add resize listener
+  window.addEventListener('resize', () => {
+    windowWidth.value = window.innerWidth
+  })
+})
+
+// Computed property to determine if the button should be visible
+const showButton = computed(() => {
+  // On mobile (< 768px), only show when there's text
+  // On larger screens, always show
+  return userInput.value.trim().length > 0 || windowWidth.value >= 768
+})
 </script>
 
 <template>
@@ -16,6 +38,7 @@ const { userInput, loading, sendMessage } = useChatStore()
     />
 
     <button
+      v-show="showButton"
       @click="sendMessage"
       :disabled="loading || !userInput.trim()"
       aria-label="Send message"
@@ -37,3 +60,25 @@ const { userInput, loading, sendMessage } = useChatStore()
     </button>
   </div>
 </template>
+
+<style scoped>
+button {
+  opacity: 1;
+}
+
+@media (max-width: 767px) {
+  button {
+    opacity: 0;
+    animation: fadeIn 0.6s ease forwards;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+</style>
