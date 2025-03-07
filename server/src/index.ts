@@ -44,7 +44,7 @@ function corsHeaders(request: Request) {
 	// List of allowed origins
 	const allowedOrigins = [
 		'http://localhost:5173', // Vite dev server
-		'https://3b7dd268.resume-bnf.pages.dev',
+		'https://resume-bnf.pages.dev',
 	];
 
 	// Get the Origin header from the request
