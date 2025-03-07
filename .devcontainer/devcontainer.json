@@ -3,9 +3,6 @@
   "build": {
     "dockerfile": "Dockerfile"
   },
-  "remoteUser": "node",
-  "workspaceMount": "source=${localWorkspaceFolder:${localEnv:CODESPACES_FOLDER:/workspaces/$(echo $GITHUB_REPOSITORY | cut -d '/' -f 2)}},target=/workspace,type=bind,consistency=cached",
-  "workspaceFolder": "/workspace",
   "containerEnv": {
     "CLOUDFLARE_API_TOKEN": "${localEnv:CLOUDFLARE_API_TOKEN}"
   },
