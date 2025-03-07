@@ -1,4 +1,4 @@
-FROM node:22.14-bullseye
+FROM node:22.14-bookworm
 
 # Ensure the workspace directory exists and is owned by the node user
 WORKDIR /home/node/app

@@ -1,14 +1,17 @@
 {
-    "name": "Node.js Dev Container",
-    "build": {
-      "dockerfile": "Dockerfile"
-    },
-    "remoteUser": "node",
-    "workspaceFolder": "/workspace",
-    "mounts": [
-      "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
-    ],
-    "customizations": {
+  "name": "Node.js Dev Container",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "remoteUser": "node",
+  "workspaceFolder": "/workspace",
+  "mounts": [
+    "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached"
+  ],
+  "containerEnv": {
+    "CLOUDFLARE_API_TOKEN": "${localEnv:CLOUDFLARE_API_TOKEN}"
+  },
+  "customizations": {
     "vscode": {
       "extensions": [
         "dbaeumer.vscode-eslint",
@@ -18,5 +21,4 @@
     }
   },
   "forwardPorts": [3000, 5173]
-  }
-  
+}
