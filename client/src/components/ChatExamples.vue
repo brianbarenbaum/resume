@@ -1,7 +1,16 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import { useChatStore } from '../composables/chatStore'
 
 const { userInput, sendMessage } = useChatStore()
+
+// State to track if the section is collapsed
+const isCollapsed = ref(false)
+
+// Toggle collapse state
+function toggleCollapse() {
+  isCollapsed.value = !isCollapsed.value
+}
 
 // Example questions that users can ask
 const exampleQuestions = [
@@ -22,8 +31,36 @@ function askQuestion(question: string) {
 
 <template>
   <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md h-full">
-    <div class="p-4">
-      <h3 class="text-lg font-medium text-gray-800 dark:text-white mb-3">Example Questions</h3>
+    <!-- Header that is not collapsible -->
+    <div class="p-4 hidden md:block">
+      <h3 class="text-md font-medium text-gray-800 dark:text-white">Example Questions</h3>
+    </div>
+
+    <!-- Clickable header with caret icon for mobile only -->
+    <div
+      @click="toggleCollapse"
+      class="md:hidden p-3 flex justify-between items-center cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+    >
+      <h3 class="text-lg font-medium text-gray-800 dark:text-white">Example Questions</h3>
+
+      <!-- Up/Down caret icon based on collapsed state -->
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="w-5 h-5 text-gray-500 dark:text-gray-400"
+        :class="{ 'transform rotate-180': isCollapsed }"
+      >
+        <path d="M18 15l-6-6-6 6" />
+      </svg>
+    </div>
+
+    <!-- Collapsible content -->
+    <div v-if="!isCollapsed" class="px-4 pb-4">
       <!-- Grid on mobile, column on md+ screens -->
       <div class="grid grid-cols-2 md:grid-cols-1 gap-2">
         <button

@@ -19,12 +19,12 @@ const renderedMarkdown = computed(() => {
 <template>
   <div
     :class="[
-      'flex items-start gap-3 max-w-[80%] animate-fade-in',
+      'flex items-start gap-3 max-w-[98%] animate-fade-in',
       message.type === 'user' ? 'self-end flex-row-reverse' : '',
     ]"
   >
     <div
-      class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-2xl"
+      class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-700 md:flex md:items-center md:justify-center text-2xl hidden"
     >
       {{ message.type === 'user' ? '👤' : '🤖' }}
     </div>
