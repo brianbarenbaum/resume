@@ -2,7 +2,7 @@ import { ref, type Ref, nextTick } from 'vue'
 import axios from 'axios'
 import { marked } from 'marked'
 import DOMPurify from 'dompurify'
-import config from '../config'
+import { getApiUrl } from '../config'
 
 export interface Message {
   text: string
@@ -83,7 +83,7 @@ export function useChatStore() {
 
     try {
       // Send request to API
-      const response = await axios.post(config.apiUrl, {
+      const response = await axios.post(getApiUrl(), {
         question: text,
       })
 
