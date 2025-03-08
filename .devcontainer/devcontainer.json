@@ -6,6 +6,10 @@
   "containerEnv": {
     "CLOUDFLARE_API_TOKEN": "${localEnv:CLOUDFLARE_API_TOKEN}"
   },
+  "workspaceFolder": "/workspace",
+  "mounts": [
+    "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached"
+  ],
   "customizations": {
     "vscode": {
       "extensions": [
