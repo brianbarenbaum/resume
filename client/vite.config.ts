@@ -15,6 +15,10 @@ export default defineConfig({
       },
     },
   },
+  build: {
+    sourcemap: true,
+    minify: false,
+  },
   plugins: [vue(), vueDevTools(), tailwindcss()],
   resolve: {
     alias: {
