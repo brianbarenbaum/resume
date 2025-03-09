@@ -1,4 +1,5 @@
 import { run } from './chat';
+import resumeData from '../input/resume.json';
 
 export default {
 	async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
@@ -7,8 +8,15 @@ export default {
 			return handleCORS(request);
 		}
 
-		// Only allow POST requests to /api/query
 		const url = new URL(request.url);
+
+		if (request.method === 'GET' && url.pathname === '/api/resume') {
+			return new Response(JSON.stringify(resumeData), {
+				status: 200,
+				headers: corsHeaders(request),
+			});
+		}
+
 		if (request.method === 'POST' && url.pathname === '/api/query') {
 			try {
 				const requestData = (await request.json()) as { question?: string };

@@ -6,7 +6,7 @@ import ChatExamples from '../components/ChatExamples.vue'
 
 <template>
   <div class="h-full w-full bg-gray-50 dark:bg-gray-900 flex flex-col overflow-hidden">
-    <div class="max-w-7xl mx-auto p-5 w-full h-full">
+    <div class="max-w-7xl mx-auto py-2 px-1 sm:px-6 sm:py-6 lg:px-8 w-full h-full">
       <!-- Responsive layout container -->
       <div class="flex flex-col md:flex-row gap-4 h-full">
         <!-- Example Questions - Left side on md+ screens, bottom on mobile -->
