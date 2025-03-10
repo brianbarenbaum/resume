@@ -4,6 +4,7 @@ import AppNav from './components/AppNav.vue'
 
 <template>
   <div class="flex flex-col h-screen">
+    <IconSprite />
     <AppNav />
     <div class="flex-1 overflow-hidden">
       <router-view />

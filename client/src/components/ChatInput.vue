@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { useChatStore } from '../composables/chatStore'
 import { computed, ref, onMounted } from 'vue'
+import Icon from './AppIcon.vue'
+
 const { userInput, loading, dispatchMessage } = useChatStore()
 
 // Initialize windowWidth safely
@@ -42,21 +44,10 @@ const showButton = computed(() => {
       @click="dispatchMessage"
       :disabled="loading || !userInput.trim()"
       aria-label="Send message"
-      class="flex items-center justify-center w-9 h-9 md:w-10 md:h-10 bg-gray-800 disabled:bg-gray-200 dark:disabled:bg-gray-700 dark:bg-gray-600 hover:bg-gray-700 dark:hover:bg-gray-600 disabled:text-gray-100 text-white dark:text-gray-200 dark:disabled:text-gray-600 cursor-pointer rounded-full transition-colors disabled:cursor-not-allowed self-end md:self-center"
+      class="flex items-center justify-center w-9 h-9 md:w-10 md:h-10 bg-gray-800 disabled:bg-gray-300 dark:disabled:bg-gray-700 dark:bg-gray-600 hover:bg-gray-700 dark:hover:bg-gray-600 disabled:text-gray-200 text-white dark:text-gray-200 dark:disabled:text-gray-600 cursor-pointer rounded-full transition-colors disabled:cursor-not-allowed self-end md:self-center"
     >
-      <!-- Up Arrow SVG Icon -->
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        class="w-5 h-5"
-      >
-        <path d="M12 19V5M5 12l7-7 7 7" />
-      </svg>
+      <!-- Up Arrow Icon -->
+      <Icon name="arrow-up" size="20" className="w-5 h-5" />
     </button>
   </div>
 </template>
