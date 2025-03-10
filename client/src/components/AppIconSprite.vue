@@ -1,5 +1,40 @@
 <template>
   <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
+    <!-- Logo Icons -->
+    <symbol id="icon-logo-dark" viewBox="0 0 120 40">
+      <!-- Left angle bracket < -->
+      <text x="15" y="28" font-family="monospace" font-size="24" font-weight="bold" fill="#4fd1c5">
+        &lt;
+      </text>
+
+      <!-- BB text -->
+      <text x="38" y="28" font-family="monospace" font-size="24" font-weight="bold" fill="#fbd38d">
+        BB
+      </text>
+
+      <!-- Closing tag /> -->
+      <text x="70" y="28" font-family="monospace" font-size="24" font-weight="bold" fill="#4fd1c5">
+        /&gt;
+      </text>
+    </symbol>
+
+    <symbol id="icon-logo-light" viewBox="0 0 120 40">
+      <!-- Left angle bracket < -->
+      <text x="15" y="28" font-family="monospace" font-size="24" font-weight="bold" fill="#319795">
+        &lt;
+      </text>
+
+      <!-- BB text -->
+      <text x="38" y="28" font-family="monospace" font-size="24" font-weight="bold" fill="#dd6b20">
+        BB
+      </text>
+
+      <!-- Closing tag /> -->
+      <text x="70" y="28" font-family="monospace" font-size="24" font-weight="bold" fill="#319795">
+        /&gt;
+      </text>
+    </symbol>
+
     <!-- Theme Icons -->
     <symbol
       id="icon-light-mode"

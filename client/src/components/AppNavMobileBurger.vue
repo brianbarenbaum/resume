@@ -1,11 +1,17 @@
 <script setup lang="ts">
+import AppIcon from './AppIcon.vue'
 import Icon from './AppIcon.vue'
 import { useMobileMenuStore } from '../composables/mobileMenuStore'
 const { isMobileMenuOpen, toggleMobileMenu } = useMobileMenuStore()
+
+defineProps<{
+  logoIconName: string
+}>()
 </script>
 
 <template>
-  <div class="md:hidden">
+  <div class="md:hidden flex">
+    <AppIcon :name="logoIconName" className="h-7 w-20" />
     <button
       @click="toggleMobileMenu"
       type="button"
