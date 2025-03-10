@@ -1,8 +1,7 @@
 import { ref, type Ref, nextTick } from 'vue'
-import axios from 'axios'
 import { marked } from 'marked'
 import DOMPurify from 'dompurify'
-import { getApiUrl } from '../config'
+import { sendChatMessage } from '@/services/api'
 
 export interface Message {
   text: string
@@ -66,40 +65,32 @@ export function useChatStore() {
     }
   }
 
-  // Send a message to the API
-  async function sendMessage(): Promise<void> {
-    const text = userInput.value.trim()
-    if (!text || loading.value) return
-
-    // Add user message
+  function pushMessage(text: string, type: 'user' | 'bot'): void {
     messages.value.push({
       text,
-      type: 'user',
+      type,
       time: formatTime(),
     })
+  }
+
+  // Send a message to the API
+  async function dispatchMessage(): Promise<void> {
+    const text = userInput.value.trim()
+    if (!text || loading.value) return
+    pushMessage(text, 'user')
 
     userInput.value = ''
     loading.value = true
 
     try {
       // Send request to API
-      const response = await axios.post(getApiUrl(), {
-        question: text,
-      })
-
-      // Add bot response
-      messages.value.push({
-        text: response.data.response,
-        type: 'bot',
-        time: formatTime(),
-      })
+      const response = await sendChatMessage(text)
+      pushMessage(response, 'bot')
     } catch (error) {
-      // Add error message
-      messages.value.push({
-        text: 'Sorry, I encountered an error while processing your question. Please try again.',
-        type: 'bot',
-        time: formatTime(),
-      })
+      pushMessage(
+        'Sorry, I encountered an error while processing your question. Please try again.',
+        'bot',
+      )
       console.error('Error sending message:', error)
     } finally {
       loading.value = false
@@ -115,6 +106,6 @@ export function useChatStore() {
     messagesContainer,
     renderMarkdown,
     scrollToBottom,
-    sendMessage,
+    dispatchMessage,
   }
 }

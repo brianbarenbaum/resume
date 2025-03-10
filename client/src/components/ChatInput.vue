@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useChatStore } from '../composables/chatStore'
 import { computed, ref, onMounted } from 'vue'
-const { userInput, loading, sendMessage } = useChatStore()
+const { userInput, loading, dispatchMessage } = useChatStore()
 
 // Initialize windowWidth safely
 const windowWidth = ref(0)
@@ -31,7 +31,7 @@ const showButton = computed(() => {
   >
     <input
       v-model="userInput"
-      @keyup.enter="sendMessage"
+      @keyup.enter="dispatchMessage"
       placeholder="Ask a question about my resume..."
       :disabled="loading"
       class="flex-1 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-full outline-none focus:border-primary bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200 transition-colors"
@@ -39,7 +39,7 @@ const showButton = computed(() => {
 
     <button
       v-show="showButton"
-      @click="sendMessage"
+      @click="dispatchMessage"
       :disabled="loading || !userInput.trim()"
       aria-label="Send message"
       class="flex items-center justify-center w-9 h-9 md:w-10 md:h-10 bg-gray-800 disabled:bg-gray-200 dark:disabled:bg-gray-700 dark:bg-gray-600 hover:bg-gray-700 dark:hover:bg-gray-600 disabled:text-gray-100 text-white dark:text-gray-200 dark:disabled:text-gray-600 cursor-pointer rounded-full transition-colors disabled:cursor-not-allowed self-end md:self-center"

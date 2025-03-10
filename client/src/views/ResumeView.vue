@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import axios from 'axios'
+import { getResume } from '@/services/api'
 
 // Resume data structure
 interface Job {
@@ -37,12 +37,9 @@ const resume = ref<Resume | null>(null)
 const loading = ref(true)
 const error = ref<string | null>(null)
 
-// Fetch resume data
 onMounted(async () => {
   try {
-    // You can either fetch from your API or import directly
-    const response = await axios.get('/api/resume')
-    resume.value = response.data
+    resume.value = await getResume()
     loading.value = false
   } catch (err) {
     console.error('Error fetching resume:', err)

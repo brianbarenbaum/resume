@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import { useChatStore } from '../composables/chatStore'
 
-const { userInput, sendMessage } = useChatStore()
+const { userInput, dispatchMessage } = useChatStore()
 
 // State to track if the section is collapsed
 const isCollapsed = ref(false)
@@ -25,7 +25,7 @@ const exampleQuestions = [
 // Function to handle question click
 function askQuestion(question: string) {
   userInput.value = question
-  setTimeout(() => sendMessage(), 10)
+  setTimeout(() => dispatchMessage(), 10)
 }
 </script>
 
