@@ -18,22 +18,6 @@ function validateUserInput(input: string): { isValid: boolean; message?: string 
     return { isValid: false, message: 'Input exceeds maximum length (1000 characters)' }
   }
 
-  // Check for potentially malicious patterns
-  const suspiciousPatterns = [
-    /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, // Basic script tag detection
-    /javascript:/gi, // javascript: protocol
-    /on\w+\s*=/gi, // Inline event handlers
-  ]
-
-  for (const pattern of suspiciousPatterns) {
-    if (pattern.test(input)) {
-      return {
-        isValid: false,
-        message: 'Input contains potentially unsafe content',
-      }
-    }
-  }
-
   return { isValid: true }
 }
 

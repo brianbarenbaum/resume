@@ -4,6 +4,7 @@ import DOMPurify from 'dompurify'
 import { sendChatMessage } from '@/services/api'
 import { validateUserInput } from '@/services/inputValidator'
 import { encodeHTMLEntities } from '@/services/htmlEncoder'
+
 export interface Message {
   text: string
   type: 'user' | 'bot'
