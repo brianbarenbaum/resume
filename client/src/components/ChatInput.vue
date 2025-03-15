@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useChatStore } from '../composables/chatStore'
-import { computed, ref, onMounted } from 'vue'
+import { computed, ref, onMounted, watch } from 'vue'
+import { MAX_CHARACTERS } from '../consts'
 import Icon from './AppIcon.vue'
 
 const { userInput, loading, dispatchMessage } = useChatStore()
@@ -24,6 +25,15 @@ const showButton = computed(() => {
   // On mobile (< 768px), only show when there's text
   // On larger screens, always show
   return userInput.value.trim().length > 0 || windowWidth.value >= 768
+})
+
+const characterCount = computed(() => userInput.value.length)
+
+// Watch for changes in userInput to enforce character limit
+watch(userInput, (newValue) => {
+  if (newValue.length > MAX_CHARACTERS) {
+    userInput.value = newValue.slice(0, MAX_CHARACTERS)
+  }
 })
 </script>
 
@@ -49,6 +59,10 @@ const showButton = computed(() => {
       <!-- Up Arrow Icon -->
       <Icon name="arrow-up" size="20" className="w-5 h-5" />
     </button>
+
+    <div class="text-sm text-gray-600 dark:text-gray-400 self-end md:self-center">
+      {{ characterCount }} / {{ MAX_CHARACTERS }}
+    </div>
   </div>
 </template>
 

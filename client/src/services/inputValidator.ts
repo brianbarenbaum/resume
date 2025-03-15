@@ -1,4 +1,5 @@
 import { createRateLimiter } from './rateLimiter'
+import { MAX_CHARACTERS } from '../consts'
 
 function validateUserInput(input: string): { isValid: boolean; message?: string } {
   const messageLimiter = createRateLimiter(1000)
@@ -14,8 +15,11 @@ function validateUserInput(input: string): { isValid: boolean; message?: string 
   }
 
   // Check input length
-  if (input.length > 1000) {
-    return { isValid: false, message: 'Input exceeds maximum length (1000 characters)' }
+  if (input.length > MAX_CHARACTERS) {
+    return {
+      isValid: false,
+      message: `Input exceeds maximum length (${MAX_CHARACTERS} characters)`,
+    }
   }
 
   return { isValid: true }

@@ -5,7 +5,7 @@ function validateInput(question: string | undefined): { isValid: boolean; messag
 	}
 
 	// Validate input length
-	if (question.length > 1000) {
+	if (question.length > 500) {
 		return { isValid: false, message: 'Question exceeds maximum length' };
 	}
 
