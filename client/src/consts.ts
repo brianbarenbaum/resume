@@ -1,1 +1,1 @@
-export const MAX_CHARACTERS = 500
+export const MAX_CHARACTERS = 50
