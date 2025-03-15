@@ -10,6 +10,12 @@
 	"observability": {
 		"enabled": true
 	},
+	"kv_namespaces": [
+		{
+			"binding": "RATE_LIMIT",
+			"id": "981fb0b8c6fe47b9b7eeaf1e128b7b6e"
+		}
+	],
 	/**
 	 * Smart Placement
 	 * Docs: https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement

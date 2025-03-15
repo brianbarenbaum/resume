@@ -2,7 +2,8 @@ import { ref, type Ref, nextTick } from 'vue'
 import { marked } from 'marked'
 import DOMPurify from 'dompurify'
 import { sendChatMessage } from '@/services/api'
-
+import { validateUserInput } from '@/services/inputValidator'
+import { encodeHTMLEntities } from '@/services/htmlEncoder'
 export interface Message {
   text: string
   type: 'user' | 'bot'
@@ -75,7 +76,14 @@ export function useChatStore() {
 
   // Send a message to the API
   async function dispatchMessage(): Promise<void> {
-    const text = userInput.value.trim()
+    const validation = validateUserInput(userInput.value)
+
+    if (!validation.isValid) {
+      console.error(validation.message)
+      return
+    }
+
+    const text = encodeHTMLEntities(userInput.value.trim())
     if (!text || loading.value) return
     pushMessage(text, 'user')
 

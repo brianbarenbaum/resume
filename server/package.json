@@ -10,7 +10,8 @@
 		"cf-typegen": "wrangler types"
 	},
 	"dependencies": {
-		"@google/generative-ai": "^0.24.0"
+		"@google/generative-ai": "^0.24.0",
+		"xss": "^1.0.15"
 	},
 	"devDependencies": {
 		"@cloudflare/vitest-pool-workers": "^0.7.5",

@@ -1,80 +1,43 @@
-import { run } from './chat';
-import resumeData from '../input/resume.json';
+import { handleResumeRequest, handleQueryRequest } from './requestHandlers';
+import { handleCORS, corsHeaders } from './corsHandler';
+import { checkRateLimit, RateLimiterConfig } from './rateLimiter';
+import { getSecurityHeaders } from './securityHeaders';
+
+const RATE_LIMIT_CONFIG: RateLimiterConfig = {
+	rateLimit: 10, // Max requests per period
+	windowSeconds: 60, // Time window in seconds
+};
 
 export default {
 	async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
+		const securityHeaders = getSecurityHeaders();
+
 		// Handle CORS preflight requests
 		if (request.method === 'OPTIONS') {
 			return handleCORS(request);
 		}
 
-		const url = new URL(request.url);
+		const { isRateLimited, retryAfter } = await checkRateLimit(request, env, RATE_LIMIT_CONFIG);
 
-		if (request.method === 'GET' && url.pathname === '/api/resume') {
-			return new Response(JSON.stringify(resumeData), {
-				status: 200,
-				headers: corsHeaders(request),
+		if (isRateLimited) {
+			console.error('Rate limit exceeded. Please try again later.');
+			return new Response(JSON.stringify({ error: 'Rate limit exceeded. Please try again later.' }), {
+				status: 429,
+				headers: { ...corsHeaders(request), ...securityHeaders, 'Retry-After': `${retryAfter}` },
 			});
 		}
 
+		const url = new URL(request.url);
+
+		if (request.method === 'GET' && url.pathname === '/api/resume') {
+			return handleResumeRequest(request, securityHeaders);
+		}
+
 		if (request.method === 'POST' && url.pathname === '/api/query') {
-			try {
-				const requestData = (await request.json()) as { question?: string };
-				const { question } = requestData;
-
-				if (!question) {
-					return new Response(JSON.stringify({ error: 'Question is required' }), {
-						status: 400,
-						headers: corsHeaders(request),
-					});
-				}
-
-				const response = await run(question, env.GEMINI_API_KEY);
-
-				return new Response(JSON.stringify({ question, response }), {
-					status: 200,
-					headers: corsHeaders(request),
-				});
-			} catch (error) {
-				console.error('Error processing request:', error);
-				return new Response(JSON.stringify({ error: 'Internal server error' }), {
-					status: 500,
-					headers: corsHeaders(request),
-				});
-			}
+			return handleQueryRequest(request, env, securityHeaders);
 		}
 
 		// Handle other routes
 		return new Response('Not found', { status: 404, headers: corsHeaders(request) });
 	},
 };
-function corsHeaders(request: Request) {
-	// List of allowed origins
-	const allowedOrigins = [
-		'http://localhost:5173', // Vite dev server
-		'https://resume-bnf.pages.dev',
-	];
-
-	// Get the Origin header from the request
-	const origin = request.headers.get('Origin') || '';
-
-	// Check if the origin is in our allowed list
-	const isAllowedOrigin = allowedOrigins.includes(origin);
-
-	return {
-		'Content-Type': 'application/json',
-		// If origin is allowed, echo it back, otherwise don't set the header
-		...(isAllowedOrigin && { 'Access-Control-Allow-Origin': origin }),
-		'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-		'Access-Control-Allow-Headers': 'Content-Type',
-		// Allow credentials if needed (cookies, authorization headers)
-		'Access-Control-Allow-Credentials': 'true',
-	};
-}
-
-function handleCORS(request: Request) {
-	return new Response(null, {
-		status: 204,
-		headers: corsHeaders(request),
-	});
-}

@@ -2,36 +2,7 @@
 import { ref, onMounted } from 'vue'
 import { getResume } from '@/services/api'
 import Icon from '../components/AppIcon.vue'
-
-// Resume data structure
-interface Job {
-  job_title: string
-  company: string
-  location: string
-  duration: string
-  responsibilities?: string[]
-}
-
-interface Education {
-  degree: string
-  institution: string
-  year: number | string
-}
-
-interface Resume {
-  name: string
-  contact: {
-    location: string
-    phone: string
-    email: string
-    linkedin: string
-  }
-  summary: string
-  experience: Job[]
-  education: Education[]
-  awards: string[]
-  skills: { [category: string]: string[] }
-}
+import type { Resume } from '../interfaces'
 
 // Initialize resume data
 const resume = ref<Resume | null>(null)
@@ -84,21 +55,6 @@ function formatLinkedIn(linkedin: string): string {
               <div class="flex items-center">
                 <Icon name="location" size="20" className="w-5 h-5 mr-2" />
                 {{ resume.contact.location }}
-              </div>
-
-              <div class="flex items-center">
-                <Icon name="phone" size="20" className="w-5 h-5 mr-2" />
-                {{ resume.contact.phone }}
-              </div>
-
-              <div class="flex items-center">
-                <Icon name="email" size="20" className="w-5 h-5 mr-2" />
-                <a
-                  :href="`mailto:${resume.contact.email}`"
-                  class="text-blue-600 dark:text-blue-400 hover:underline"
-                >
-                  {{ resume.contact.email }}
-                </a>
               </div>
 
               <div class="flex items-center">
