@@ -51,7 +51,7 @@ async function parseResume(): Promise<string> {
 
 function isDogRequest(question: string): boolean {
 	const normalizedQuery = question.toLowerCase();
-	return normalizedQuery.includes('can you show me a picture of brians dog?');
+	return normalizedQuery.includes('can you show me a picture of your dog?');
 }
 
 function preprocessQuery(query: string): string {
@@ -82,7 +82,7 @@ async function askGemini(context: string, question: string, apiKey: string) {
     12. If the user is asking to see a picture of Brian's dog, your response should be:
        "I thought you would never ask!  Here is a cute picture of Brian's dog:
        
-       ![Waffles](/waffles.jpeg)
+       ![Waffles](/waffles.png)
        
        This is Waffles, Brian's beloved dog. Is there anything else you'd like to know about Brian's resume?"
     `;

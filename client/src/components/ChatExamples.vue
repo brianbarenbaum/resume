@@ -14,13 +14,12 @@ function toggleCollapse() {
 
 // Example questions that users can ask
 const exampleQuestions = [
-  'What experience do you have?',
   'What are your technical skills?',
   'Tell me about your education',
   'What projects have you worked on?',
   'What are your strengths?',
   'Where have you worked before?',
-  'Can you show me a picture of Brians dog?',
+  'Can you show me a picture of your dog?',
 ]
 
 // Function to handle question click
