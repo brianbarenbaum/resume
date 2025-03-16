@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import AppNavThemeButtons from './AppNavThemeButtons.vue'
+import AppNavSocialIcons from './AppNavSocialIcons.vue'
 import AppNavMobileBurger from './AppNavMobileBurger.vue'
 import AppNavRouterLinksDesktop from './AppNavRouterLinksDesktop.vue'
 import AppNavRouterLinksMobile from './AppNavRouterLinksMobile.vue'
@@ -25,7 +26,9 @@ const logoIconName = computed(() => {
         <!-- Desktop Navigation and Theme Toggle (hidden on mobile) -->
         <div class="hidden md:flex w-full items-center justify-between space-x-8">
           <!-- BB logo -->
-          <AppIcon :name="logoIconName" className="h-14 w-32" />
+          <router-link to="/">
+            <AppIcon :name="logoIconName" className="h-14 w-32" />
+          </router-link>
 
           <!-- Desktop Navigation Links -->
           <div class="flex-1">
@@ -34,7 +37,14 @@ const logoIconName = computed(() => {
 
           <!-- Desktop Theme Toggle -->
           <div class="flex bg-gray-100 dark:bg-gray-700 p-1 rounded-lg">
-            <AppNavThemeButtons />
+            <div class="flex items-center gap-2">
+              <AppNavSocialIcons />
+
+              <!-- Divider between social icons and theme buttons -->
+              <div class="h-6 w-px bg-gray-300 dark:bg-gray-600 mx-1"></div>
+
+              <AppNavThemeButtons />
+            </div>
           </div>
         </div>
 
@@ -58,7 +68,14 @@ const logoIconName = computed(() => {
       <div class="px-4 py-4 border-t border-gray-200 dark:border-gray-700">
         <div class="flex justify-left">
           <div class="inline-flex bg-gray-100 dark:bg-gray-700 p-1 rounded-lg">
-            <AppNavThemeButtons />
+            <div class="flex items-center gap-2">
+              <AppNavSocialIcons />
+
+              <!-- Divider between social icons and theme buttons -->
+              <div class="h-6 w-px bg-gray-300 dark:bg-gray-600 mx-1"></div>
+
+              <AppNavThemeButtons />
+            </div>
           </div>
         </div>
       </div>

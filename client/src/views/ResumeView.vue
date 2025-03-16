@@ -57,17 +57,23 @@ function formatLinkedIn(linkedin: string): string {
                 {{ resume.contact.location }}
               </div>
 
-              <div class="flex items-center">
-                <Icon name="link" size="20" className="w-5 h-5 mr-2" />
-                <a
-                  :href="formatLinkedIn(resume.contact.linkedin)"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-blue-600 dark:text-blue-400 hover:underline"
-                >
-                  LinkedIn
-                </a>
-              </div>
+              <a
+                :href="formatLinkedIn(resume.contact.linkedin)"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="flex items-center">
+                  <Icon name="linkedin" size="20" className="w-5 h-5 mr-2" />
+                  <div class="text-blue-600 dark:text-blue-400 hover:underline">LinkedIn</div>
+                </div>
+              </a>
+
+              <a :href="resume.contact.github" target="_blank" rel="noopener noreferrer">
+                <div class="flex items-center">
+                  <Icon name="github" size="20" className="w-5 h-5 mr-2" />
+                  <div class="text-blue-600 dark:text-blue-400 hover:underline">GitHub</div>
+                </div>
+              </a>
             </div>
           </header>
 

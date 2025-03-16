@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <style>
+    /* Dark mode colors (for light backgrounds) */
+    @media (prefers-color-scheme: light) {
+      .bracket { fill: #319795; } /* Teal color */
+      .text { fill: #dd6b20; }    /* Orange color */
+    }
+    
+    /* Light mode colors (for dark backgrounds) */
+    @media (prefers-color-scheme: dark) {
+      .bracket { fill: #4fd1c5; } /* Lighter teal for dark mode */
+      .text { fill: #fbd38d; }    /* Lighter orange for dark mode */
+    }
+  </style>
+  
+  <!-- Simplified BB Logo for favicon size with increased size -->
+  <g transform="scale(1.4) translate(0, 0)">
+    <!-- BB text -->
+    <text x="2" y="18" font-family="monospace" font-size="20" font-weight="bold" class="text">
+      BB
+    </text>
+
+  </g>
+</svg>

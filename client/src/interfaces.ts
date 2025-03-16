@@ -19,6 +19,7 @@ export interface Resume {
     phone: string
     email: string
     linkedin: string
+    github: string
   }
   summary: string
   experience: Job[]

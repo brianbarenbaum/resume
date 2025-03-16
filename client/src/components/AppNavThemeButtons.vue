@@ -3,10 +3,14 @@ import { useThemeStore } from '../composables/themeStore'
 import Icon from './AppIcon.vue'
 
 const { currentTheme, applyTheme } = useThemeStore()
+
+const githubUrl = 'https://github.com/brianbarenbaum'
+const linkedinUrl = 'https://www.linkedin.com/in/brian-barenbaum-4699923/'
 </script>
 
 <template>
   <div>
+    <!-- Theme Buttons -->
     <button
       @click="applyTheme('light')"
       :class="[
