@@ -20,6 +20,7 @@ const exampleQuestions = [
   'What projects have you worked on?',
   'What are your strengths?',
   'Where have you worked before?',
+  'Can you show me a picture of Brians dog?',
 ]
 
 // Function to handle question click

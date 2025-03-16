@@ -1,9 +1,9 @@
 import { ref, type Ref, nextTick } from 'vue'
 import { marked } from 'marked'
-import DOMPurify from 'dompurify'
 import { sendChatMessage } from '@/services/api'
 import { validateUserInput } from '@/services/inputValidator'
 import { encodeHTMLEntities } from '@/services/htmlEncoder'
+import { sanitizeInput } from '@/services/inputSanitizer'
 
 export interface Message {
   text: string
@@ -41,7 +41,7 @@ export function useChatStore() {
     const titleCaseText = snakeToTitleCase(text)
     const capitalizedText = capitalizeFirstOnly(titleCaseText)
     const rawHtml = marked(capitalizedText)
-    return DOMPurify.sanitize(rawHtml as string)
+    return sanitizeInput(rawHtml as string)
   }
 
   function snakeToTitleCase(input: string): string {

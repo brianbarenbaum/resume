@@ -49,6 +49,11 @@ async function parseResume(): Promise<string> {
 	].join('\n\n');
 }
 
+function isDogRequest(question: string): boolean {
+	const normalizedQuery = question.toLowerCase();
+	return normalizedQuery.includes('can you show me a picture of brians dog?');
+}
+
 function preprocessQuery(query: string): string {
 	// Define name variations to replace
 	const namePatterns = [/\bBrian\b/gi, /\bBrian Barenbaum\b/gi, /\bMr\. Barenbaum\b/gi, /\bBarenbaum\b/gi];
@@ -67,6 +72,21 @@ async function askGemini(context: string, question: string, apiKey: string) {
 
 	const genAI = new GoogleGenerativeAI(apiKey);
 	const model = genAI.getGenerativeModel({ model: GEMINI_API_MODEL });
+
+	let promptAdditional = '';
+
+	// If this is a dog picture request, add special handling instructions
+	if (isDogRequest(question)) {
+		console.log('isDogRequest', question);
+		promptAdditional = `
+    12. If the user is asking to see a picture of Brian's dog, your response should be:
+       "I thought you would never ask!  Here is a cute picture of Brian's dog:
+       
+       ![Waffles](/waffles.jpeg)
+       
+       This is Waffles, Brian's beloved dog. Is there anything else you'd like to know about Brian's resume?"
+    `;
+	}
 
 	const prompt = `
       Given this resume content:
@@ -91,9 +111,9 @@ async function askGemini(context: string, question: string, apiKey: string) {
          - Be specific about which technologies were used at which jobs
       10. The experience section lists where Brian worked
       11. For all answers, use markdown formatting, always use bullet points and never output any text using snake case.  
-  
-  
-      Please provide your response in a clear, direct manner.
+      ${promptAdditional}
+
+			Please provide your response in a clear, direct manner.
     `;
 
 	const result = await model.generateContent(prompt);
